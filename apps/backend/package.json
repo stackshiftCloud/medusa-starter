@@ -1,0 +1,73 @@
+{
+  "name": "@dtc/backend",
+  "version": "0.0.1",
+  "description": "A starter for Medusa projects.",
+  "author": "Medusa (https://medusajs.com)",
+  "license": "MIT",
+  "keywords": [
+    "sqlite",
+    "postgres",
+    "typescript",
+    "ecommerce",
+    "headless",
+    "medusa"
+  ],
+  "scripts": {
+    "build": "pnpm --dir ../.. --filter '@stackshift-cloud/medusa-*' build && medusa build",
+    "start": "medusa start",
+    "dev": "medusa develop",
+    "lint": "medusa lint",
+    "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
+    "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
+    "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
+    "release": "medusa db:migrate",
+    "bootstrap": "medusa exec ./src/scripts/stackshift-bootstrap.ts",
+    "preview:seed": "medusa exec ./src/scripts/stackshift-preview-seed.ts",
+    "admin:reset": "medusa exec ./src/scripts/stackshift-reset-admin-password.ts",
+    "test:starter": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@medusajs/admin-sdk": "2.17.2",
+    "@medusajs/admin-shared": "2.17.2",
+    "@medusajs/caching": "2.17.2",
+    "@medusajs/cli": "2.17.2",
+    "@medusajs/dashboard": "2.17.2",
+    "@medusajs/draft-order": "2.17.2",
+    "@medusajs/framework": "2.17.2",
+    "@medusajs/medusa": "2.17.2",
+    "@medusajs/ui": "4.1.19",
+    "@tanstack/react-query": "5.64.2",
+    "react-i18next": "13.5.0",
+    "react-router-dom": "6.30.4",
+    "zod": "4.2.0",
+    "@medusajs/caching-redis": "2.17.2",
+    "@medusajs/event-bus-redis": "2.17.2",
+    "@medusajs/locking-redis": "2.17.2",
+    "@medusajs/workflow-engine-redis": "2.17.2",
+    "@stackshift-cloud/medusa-file": "workspace:*",
+    "@stackshift-cloud/medusa-notification": "workspace:*",
+    "@stackshift-cloud/medusa-observe": "workspace:*",
+    "@stackshift-cloud/medusa-payment-flutterwave": "workspace:*",
+    "@stackshift-cloud/medusa-payment-paystack": "workspace:*"
+  },
+  "devDependencies": {
+    "@medusajs/test-utils": "2.17.2",
+    "@swc/core": "^1.7.28",
+    "@swc/jest": "^0.2.36",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.2.25",
+    "jest": "^29.7.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.14",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "engines": {
+    "node": ">=20 <26"
+  }
+}

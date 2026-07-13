@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.medusa.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*.ts",
+    "../medusa-provider-shims.d.ts",
+    "../node-stream-shims.d.ts"
+  ]
+}
