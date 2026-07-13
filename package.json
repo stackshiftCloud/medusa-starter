@@ -1,0 +1,57 @@
+{
+  "name": "@stackshift-cloud/medusa-starter",
+  "version": "2026.7.1",
+  "private": true,
+  "description": "Maintained Medusa v2 DTC backend overlay for StackShift.",
+  "type": "module",
+  "scripts": {
+    "build": "medusa build",
+    "dev": "medusa develop",
+    "start": "medusa start",
+    "release": "medusa db:migrate",
+    "bootstrap": "medusa exec ./src/scripts/stackshift-bootstrap.ts",
+    "preview:seed": "medusa exec ./src/scripts/stackshift-preview-seed.ts",
+    "admin:reset": "medusa exec ./src/scripts/stackshift-reset-admin-password.ts",
+    "test:starter": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@medusajs/admin-sdk": "2.17.2",
+    "@medusajs/admin-shared": "2.17.2",
+    "@medusajs/caching": "2.17.2",
+    "@medusajs/caching-redis": "2.17.2",
+    "@medusajs/cli": "2.17.2",
+    "@medusajs/dashboard": "2.17.2",
+    "@medusajs/draft-order": "2.17.2",
+    "@medusajs/event-bus-redis": "2.17.2",
+    "@medusajs/framework": "2.17.2",
+    "@medusajs/locking-redis": "2.17.2",
+    "@medusajs/medusa": "2.17.2",
+    "@medusajs/ui": "4.1.19",
+    "@medusajs/workflow-engine-redis": "2.17.2",
+    "@stackshift-cloud/medusa-file": "0.1.0",
+    "@stackshift-cloud/medusa-notification": "0.1.0",
+    "@stackshift-cloud/medusa-observe": "0.1.0",
+    "@stackshift-cloud/medusa-payment-flutterwave": "0.1.0",
+    "@stackshift-cloud/medusa-payment-paystack": "0.1.0",
+    "@tanstack/react-query": "5.64.2",
+    "react-i18next": "13.5.0",
+    "react-router-dom": "6.30.4",
+    "zod": "4.2.0"
+  },
+  "devDependencies": {
+    "@medusajs/test-utils": "2.17.2",
+    "@swc/core": "^1.7.28",
+    "@swc/jest": "^0.2.36",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^20.12.11",
+    "jest": "^29.7.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  },
+  "engines": {
+    "node": ">=20 <26"
+  }
+}

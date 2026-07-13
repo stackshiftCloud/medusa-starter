@@ -1,0 +1,23 @@
+application: stackshift-medusa
+
+services:
+  backend:
+    type: web
+    runtime: nodejs
+    visibility: public
+    rootDirectory: apps/backend
+    port: 9000
+    buildCommand: npm run build
+    startCommand: npm run start
+
+  storefront:
+    type: web
+    runtime: nodejs
+    visibility: public
+    rootDirectory: apps/storefront
+    port: 8000
+    buildCommand: npm run build
+    startCommand: npm run start
+    bindings:
+      - service: backend
+        env: MEDUSA_BACKEND_URL

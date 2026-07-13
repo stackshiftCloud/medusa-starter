@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "stackshift-medusa-dtc-v2",
+  "version": "2026.7.1",
+  "medusa": {
+    "version": "2.17.2",
+    "supported_range": ">=2.11.0 <3"
+  },
+  "backend": {
+    "template_repository": "https://github.com/medusajs/dtc-starter.git",
+    "template_commit": "3f82d1045a4c7e21e9c47033432b9cfa45574627",
+    "overlay_directory": "apps/backend",
+    "root": "apps/backend"
+  },
+  "storefront": {
+    "repository": "https://github.com/medusajs/dtc-starter.git",
+    "commit": "3f82d1045a4c7e21e9c47033432b9cfa45574627",
+    "root": "apps/storefront",
+    "port": 8000,
+    "bindings": {
+      "MEDUSA_BACKEND_URL": "backend.url",
+      "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY": "bootstrap.publishable_api_key"
+    }
+  },
+  "build": {
+    "strategy": "shiftpack",
+    "image_assembly": "buildkit-llb",
+    "dockerfile": null,
+    "artifact": ".medusa/server"
+  },
+  "processes": {
+    "release": {
+      "command": "pnpm run release",
+      "once_per_revision": true
+    },
+    "web": {
+      "command": "pnpm run start",
+      "port": 9000,
+      "health_path": "/health",
+      "environment": {
+        "MEDUSA_WORKER_MODE": "server",
+        "DISABLE_MEDUSA_ADMIN": "false"
+      }
+    },
+    "worker": {
+      "command": "pnpm run start",
+      "environment": {
+        "MEDUSA_WORKER_MODE": "worker",
+        "DISABLE_MEDUSA_ADMIN": "true"
+      }
+    }
+  },
+  "resources": {
+    "postgres": "16",
+    "redis": "7",
+    "object_storage": true,
+    "mail": true
+  },
+  "preview": {
+    "copy_production_data": false,
+    "mail_sandbox": true,
+    "payment_credentials": "test_only",
+    "seed_command": "pnpm run preview:seed"
+  }
+}
