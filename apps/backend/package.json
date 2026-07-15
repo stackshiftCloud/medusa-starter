@@ -13,7 +13,7 @@
     "medusa"
   ],
   "scripts": {
-    "build": "pnpm --dir ../.. --filter '@stackshift-cloud/medusa-*' build && medusa build",
+    "build": "pnpm --dir ../.. --filter '@stackshift-cloud/medusa-*' --filter '!@stackshift-cloud/medusa-starter' build && medusa build",
     "start": "medusa start",
     "dev": "medusa develop",
     "lint": "medusa lint",
