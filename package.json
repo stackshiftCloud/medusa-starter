@@ -18,7 +18,10 @@
   "pnpm": {
     "overrides": {
       "@types/react": "19.0.5",
-      "@types/react-dom": "19.0.5"
+      "@types/react-dom": "19.0.5",
+      "fast-xml-parser": "5.10.0",
+      "immutable": "3.8.3",
+      "protobufjs": "7.6.3"
     }
   },
   "devDependencies": {
@@ -26,8 +29,8 @@
     "eslint": "^9.39.4",
     "jiti": "^2.7.0",
     "prettier": "^3.2.5",
-    "turbo": "^2.0.14"
+    "turbo": "2.9.14"
   },
-  "version": "2026.7.2",
+  "version": "2026.7.3",
   "description": "StackShift's maintained Medusa v2 DTC starter."
 }
