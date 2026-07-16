@@ -18,7 +18,6 @@ import type {
 
 interface Dependencies {
   logger?: LoggerLike
-  fetch?: typeof fetch
 }
 
 export class StackShiftFileProviderService extends AbstractFileProviderService {
@@ -32,7 +31,7 @@ export class StackShiftFileProviderService extends AbstractFileProviderService {
   constructor(container: Dependencies, options: StackShiftFileOptions) {
     super()
     this.delegate = new StackShiftFileProvider(
-      { ...options, fetch: options.fetch ?? container.fetch },
+      { ...options, fetch: options.fetch ?? globalThis.fetch },
       { logger: container.logger },
     )
   }

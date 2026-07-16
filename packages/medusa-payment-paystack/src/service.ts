@@ -29,7 +29,6 @@ import type {
 
 interface Dependencies {
   logger?: LoggerLike
-  fetch?: typeof fetch
 }
 
 export class PaystackPaymentProviderService extends AbstractPaymentProvider<PaystackOptions> {
@@ -43,7 +42,7 @@ export class PaystackPaymentProviderService extends AbstractPaymentProvider<Pays
   constructor(container: Dependencies, options: PaystackOptions) {
     super(container as Record<string, unknown>, options)
     this.delegate = new PaystackPaymentProvider(
-      { ...options, fetch: options.fetch ?? container.fetch },
+      { ...options, fetch: options.fetch ?? globalThis.fetch },
       { logger: container.logger },
     )
   }

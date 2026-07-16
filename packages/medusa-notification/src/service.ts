@@ -11,7 +11,6 @@ import type {
 
 interface Dependencies {
   logger?: LoggerLike
-  fetch?: typeof fetch
 }
 
 export class StackShiftNotificationProviderService extends AbstractNotificationProviderService {
@@ -25,7 +24,7 @@ export class StackShiftNotificationProviderService extends AbstractNotificationP
   constructor(container: Dependencies, options: StackShiftNotificationOptions) {
     super()
     this.delegate = new StackShiftNotificationProvider(
-      { ...options, fetch: options.fetch ?? container.fetch },
+      { ...options, fetch: options.fetch ?? globalThis.fetch },
       { logger: container.logger },
     )
   }

@@ -29,7 +29,6 @@ import type {
 
 interface Dependencies {
   logger?: LoggerLike
-  fetch?: typeof fetch
 }
 
 export class FlutterwavePaymentProviderService extends AbstractPaymentProvider<FlutterwaveOptions> {
@@ -43,7 +42,7 @@ export class FlutterwavePaymentProviderService extends AbstractPaymentProvider<F
   constructor(container: Dependencies, options: FlutterwaveOptions) {
     super(container as Record<string, unknown>, options)
     this.delegate = new FlutterwavePaymentProvider(
-      { ...options, fetch: options.fetch ?? container.fetch },
+      { ...options, fetch: options.fetch ?? globalThis.fetch },
       { logger: container.logger },
     )
   }
