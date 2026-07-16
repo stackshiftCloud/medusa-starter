@@ -26,7 +26,7 @@ if (redisUrl) {
       resolve: "@medusajs/medusa/event-bus-redis",
       options: {
         redisUrl,
-        queueName: environmentPrefix("events"),
+        queueName: environmentQueue("events"),
         jobOptions: {
           removeOnComplete: { age: 3600, count: 1000 },
           removeOnFail: { age: 86400, count: 5000 },
@@ -35,7 +35,7 @@ if (redisUrl) {
     },
     {
       resolve: "@medusajs/medusa/workflow-engine-redis",
-      options: { redis: { redisUrl }, queueName: environmentPrefix("workflows") },
+      options: { redis: { redisUrl }, queueName: environmentQueue("workflows") },
     },
     {
       resolve: "@medusajs/medusa/locking",
@@ -164,6 +164,11 @@ function cors(name: string, development: string): string {
 
 function environmentPrefix(scope: string): string {
   return `${process.env.STACKSHIFT_ENVIRONMENT_ID ?? "local"}:${scope}:`
+}
+
+function environmentQueue(scope: string): string {
+  return `${process.env.STACKSHIFT_ENVIRONMENT_ID ?? "local"}-${scope}`
+    .replace(/[^a-zA-Z0-9_-]/g, "-")
 }
 
 function paymentSecret(name: string, testPrefix: string): string | undefined {
